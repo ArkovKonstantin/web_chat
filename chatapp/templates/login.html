@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loign</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+
+    <div class="form">
+
+        <form action= "" method="post">
+            {% csrf_token %}
+            <input type="text"  name="username" placeholder="Username">
+            {% if form.errors.username %}
+                <ul>*</ul>{{ form.errors.username|truncatewords_html:9 }}
+            {% else %}
+                <ul style="opacity: 0;">*</ul>
+            {% endif %}
+            <input type="password" name="password" placeholder="Password">
+            {% if form.errors.password %}
+                <ul>*</ul>{{ form.errors.password|truncatewords_html:9 }}
+            {% else %}
+                <ul style="opacity: 0;">*</ul>
+            {% endif %}
+            <button type="submit">Login</button>
+            <p class="message">Not registered? <a href="../register">Create an account</a></p>
+        </form>
+
+    </div>
+
+</body>
+</html>

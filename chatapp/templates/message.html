@@ -1,0 +1,17 @@
+{% if message.author != user %}
+    <div class="self-msg-container">
+        <div class="self-msg">
+            {{ message.text }}
+        </div>
+        <div class="time">{{ message.date }}</div>
+    </div>
+{% else %}
+    <div class="friend-msg-container">
+
+        <div class="time">{{ message.date }}</div>
+        <div class="friend-msg">
+            {{ message.text }}
+        </div>
+
+    </div>
+{% endif %}

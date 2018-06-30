@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+
+    <div class="form">
+        <form action= "" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    <!--<label>{{ field.label }}</label>-->
+                        {{ field }}
+                </div>
+            {% endfor %}
+
+        <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+
+
+</body>
+</html>

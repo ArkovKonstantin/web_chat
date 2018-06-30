@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" text="text/css" href="{% static 'css/style.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/search.js' %}"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:300,300i,400" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+
+    <div class="tab">
+
+        <div class="panel">
+
+            <div class="top-panel-right">
+                <img class="panel-avatar" src="{% static 'image/user5.png' %}">
+                <span class="panel-name">{{usr.first_name}} {{usr.last_name}} </span>
+                <img class="panel-menu" src="{% static 'image/menu.png' %}">
+            </div>
+
+            <div class="top-panel">
+                <!--<img class="panel-avatar" src="{% static 'image/user.png' %}">-->
+                <!--<span class="panel-name">serega</span>-->
+                <span class="panel-status">{{ current_chat.chat_name }}</span>
+            </div>
+
+        </div>
+
+
+        <div class="content">
+
+            <div class="side-panel">
+                <div class="search">
+                    <form action="" method="post" id="search-form">
+                        {% csrf_token %}
+                        <input type="text" name="q" id="id_q">
+                        <button type="submit" class="input-search"></button>
+                    </form>
+                </div>
+                <div id="usr_list" name="usr_list">
+
+                    {% include 'search_usr.html' %}
+
+                </div>
+                {% for chat in chats %}
+                <a href="{% url 'chat_url' chat.id %}">
+                <div class="contact">
+
+                    <img class="panel-avatar" src="{% static 'image/defaultchat.png' %}">
+                    <span class="panel-name">{{ chat.chat_name }}</span>
+
+                </div>
+                </a>
+                {% endfor %}
+
+                <!--<div class="contact">-->
+                    <!--<img class="panel-avatar" src="{% static 'image/user2.png' %}">-->
+                    <!--<span class="panel-name">User2</span>-->
+                <!--</div>-->
+
+                <!--<div class="contact">-->
+                    <!--<img class="panel-avatar" src="{% static 'image/user3.png' %}">-->
+                    <!--<span class="panel-name">User3</span>-->
+                <!--</div>-->
+
+            </div>
+
+            <div class="ttt">
+                <div> {{ user.username }} </div>
+                <div id="chat">
+                 {% for message in messages %}
+                    {% include 'message.html' %}
+                {% endfor %}
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <form action="" method="post" class="input" id="message-form">
+        {% csrf_token %}
+        <input id="chat_id" style="display:none;" value="{{ chat_id }}">
+        <div class="input-attach"></div>
+        <input type="text" name="text" id="text" value="" placeholder="Введите сообщение">
+        <button type="submit" class="input-send"></button>
+    </form>
+
+
+
+
+</body>
+
+
+
+</html>

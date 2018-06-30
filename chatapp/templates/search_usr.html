@@ -1,0 +1,15 @@
+{% load static %}
+<script type="text/javascript" src="{% static 'js/addcnct.js' %}"></script>
+
+    {% for usr in usrs %}
+        <div class="contact">
+            <img class="panel-avatar" src="{% static 'image/defaultchat.png' %}">
+            <span class="panel-name">{{ usr.first_name }}</span>
+            <form action="" method="post" style="display:inline-block" id="cnct-form">
+                {% csrf_token %}
+                <input id="usr_id" style="display:none;" value="{{ usr.id }}">
+                <button class="btn-add" type="submit"><strong>+</strong></button>
+            </form>
+
+        </div>
+    {% endfor %}
